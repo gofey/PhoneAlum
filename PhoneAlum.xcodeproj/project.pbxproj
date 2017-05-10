@@ -13,6 +13,13 @@
 		B3E4EBF11EBC882C00A66B13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3E4EBEF1EBC882C00A66B13 /* Main.storyboard */; };
 		B3E4EBF31EBC882C00A66B13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3E4EBF21EBC882C00A66B13 /* Assets.xcassets */; };
 		B3E4EBF61EBC882C00A66B13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3E4EBF41EBC882C00A66B13 /* LaunchScreen.storyboard */; };
+		B3E4EBFF1EBC890E00A66B13 /* GFPhotoAlumController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4EBFE1EBC890E00A66B13 /* GFPhotoAlumController.m */; };
+		B3E4EC021EC01CBD00A66B13 /* GFPhotosController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4EC011EC01CBD00A66B13 /* GFPhotosController.m */; };
+		B3E4EC051EC064F400A66B13 /* GFPhotoCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4EC041EC064F400A66B13 /* GFPhotoCollectionCell.m */; };
+		B3E4EC0B1EC06C5A00A66B13 /* GFLargePhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4EC0A1EC06C5A00A66B13 /* GFLargePhotoController.m */; };
+		B3E4EC0E1EC1728D00A66B13 /* GFLargePhotoCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4EC0D1EC1728D00A66B13 /* GFLargePhotoCollectionCell.m */; };
+		B3E4EC141EC192BF00A66B13 /* GFAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4EC131EC192BF00A66B13 /* GFAsset.m */; };
+		B3E4EC181EC1B85A00A66B13 /* GFPhotoBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4EC171EC1B85A00A66B13 /* GFPhotoBaseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +33,20 @@
 		B3E4EBF21EBC882C00A66B13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3E4EBF51EBC882C00A66B13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3E4EBF71EBC882C00A66B13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3E4EBFD1EBC890E00A66B13 /* GFPhotoAlumController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFPhotoAlumController.h; sourceTree = "<group>"; };
+		B3E4EBFE1EBC890E00A66B13 /* GFPhotoAlumController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFPhotoAlumController.m; sourceTree = "<group>"; };
+		B3E4EC001EC01CBD00A66B13 /* GFPhotosController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFPhotosController.h; sourceTree = "<group>"; };
+		B3E4EC011EC01CBD00A66B13 /* GFPhotosController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFPhotosController.m; sourceTree = "<group>"; };
+		B3E4EC031EC064F400A66B13 /* GFPhotoCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFPhotoCollectionCell.h; sourceTree = "<group>"; };
+		B3E4EC041EC064F400A66B13 /* GFPhotoCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFPhotoCollectionCell.m; sourceTree = "<group>"; };
+		B3E4EC091EC06C5A00A66B13 /* GFLargePhotoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFLargePhotoController.h; sourceTree = "<group>"; };
+		B3E4EC0A1EC06C5A00A66B13 /* GFLargePhotoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFLargePhotoController.m; sourceTree = "<group>"; };
+		B3E4EC0C1EC1728D00A66B13 /* GFLargePhotoCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFLargePhotoCollectionCell.h; sourceTree = "<group>"; };
+		B3E4EC0D1EC1728D00A66B13 /* GFLargePhotoCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFLargePhotoCollectionCell.m; sourceTree = "<group>"; };
+		B3E4EC121EC192BF00A66B13 /* GFAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFAsset.h; sourceTree = "<group>"; };
+		B3E4EC131EC192BF00A66B13 /* GFAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFAsset.m; sourceTree = "<group>"; };
+		B3E4EC161EC1B85A00A66B13 /* GFPhotoBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFPhotoBaseViewController.h; sourceTree = "<group>"; };
+		B3E4EC171EC1B85A00A66B13 /* GFPhotoBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFPhotoBaseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +79,20 @@
 		B3E4EBE51EBC882C00A66B13 /* PhoneAlum */ = {
 			isa = PBXGroup;
 			children = (
+				B3E4EC161EC1B85A00A66B13 /* GFPhotoBaseViewController.h */,
+				B3E4EC171EC1B85A00A66B13 /* GFPhotoBaseViewController.m */,
+				B3E4EBFD1EBC890E00A66B13 /* GFPhotoAlumController.h */,
+				B3E4EBFE1EBC890E00A66B13 /* GFPhotoAlumController.m */,
+				B3E4EC001EC01CBD00A66B13 /* GFPhotosController.h */,
+				B3E4EC011EC01CBD00A66B13 /* GFPhotosController.m */,
+				B3E4EC031EC064F400A66B13 /* GFPhotoCollectionCell.h */,
+				B3E4EC041EC064F400A66B13 /* GFPhotoCollectionCell.m */,
+				B3E4EC091EC06C5A00A66B13 /* GFLargePhotoController.h */,
+				B3E4EC0A1EC06C5A00A66B13 /* GFLargePhotoController.m */,
+				B3E4EC0C1EC1728D00A66B13 /* GFLargePhotoCollectionCell.h */,
+				B3E4EC0D1EC1728D00A66B13 /* GFLargePhotoCollectionCell.m */,
+				B3E4EC121EC192BF00A66B13 /* GFAsset.h */,
+				B3E4EC131EC192BF00A66B13 /* GFAsset.m */,
 				B3E4EBE91EBC882C00A66B13 /* AppDelegate.h */,
 				B3E4EBEA1EBC882C00A66B13 /* AppDelegate.m */,
 				B3E4EBEC1EBC882C00A66B13 /* ViewController.h */,
@@ -151,9 +186,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3E4EBFF1EBC890E00A66B13 /* GFPhotoAlumController.m in Sources */,
+				B3E4EC181EC1B85A00A66B13 /* GFPhotoBaseViewController.m in Sources */,
+				B3E4EC051EC064F400A66B13 /* GFPhotoCollectionCell.m in Sources */,
 				B3E4EBEE1EBC882C00A66B13 /* ViewController.m in Sources */,
+				B3E4EC021EC01CBD00A66B13 /* GFPhotosController.m in Sources */,
 				B3E4EBEB1EBC882C00A66B13 /* AppDelegate.m in Sources */,
+				B3E4EC0E1EC1728D00A66B13 /* GFLargePhotoCollectionCell.m in Sources */,
+				B3E4EC141EC192BF00A66B13 /* GFAsset.m in Sources */,
 				B3E4EBE81EBC882C00A66B13 /* main.m in Sources */,
+				B3E4EC0B1EC06C5A00A66B13 /* GFLargePhotoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +317,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = T7U5EL3U9U;
 				INFOPLIST_FILE = PhoneAlum/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GofeyLee.PhoneAlum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -287,6 +330,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = T7U5EL3U9U;
 				INFOPLIST_FILE = PhoneAlum/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GofeyLee.PhoneAlum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
