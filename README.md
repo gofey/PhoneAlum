@@ -8,9 +8,6 @@
 
 ![images](http://ooy23086i.bkt.clouddn.com/photoAlum1.png)
 
-![images](http://ooy23086i.bkt.clouddn.com/photoAlum2.jpeg)
-
-![images](http://ooy23086i.bkt.clouddn.com/photoAlum3.jpeg)
 
 跳转方法
 
