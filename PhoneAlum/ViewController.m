@@ -19,8 +19,9 @@
     // Do any additional setup after loading the view, typically from a nib.
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:btn];
-    btn.backgroundColor = [UIColor blueColor];
-    btn.frame = CGRectMake(100, 100, 100, 100);
+    btn.backgroundColor = [UIColor blackColor];
+    [btn setTitle:@"打开相册" forState:UIControlStateNormal];
+    btn.frame = CGRectMake(100, 100, 100, 40);
     [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
