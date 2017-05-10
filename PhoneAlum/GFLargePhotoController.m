@@ -15,9 +15,8 @@
 
 @interface GFLargePhotoController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
-//@property(nonatomic,strong)UICollectionView *collectionView;
-
 @property(nonatomic,strong)UIButton *rightBtn;
+@property(nonatomic,strong)UIAlertController *alertVC;
 
 @end
 
@@ -25,10 +24,7 @@
     
     CGFloat _offSpaceX;
     CGFloat _itemHeight;
-//    NSString *_reuseIdentifier;
-//    NSMutableArray *_selectedImgIndexs;
-//    UICollectionView *_collectionView;
-//    NSMutableArray<GFAsset *> *_assetArray;
+    
 }
 
 - (void)viewDidLoad {
@@ -47,10 +43,7 @@
 }
 
 - (void)setupNav{
-    
-    
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBtn.frame = CGRectMake(0, 0, 10, 44);
     [leftBtn setTitle:@"<" forState:UIControlStateNormal];
@@ -70,10 +63,7 @@
     
 }
 
-//- (void)submitClick:(UIButton *)sender{
-////    [self.delegate selectedPhotosFormController:self.selectedImgIndexs];
-//}
-
+#pragma mark - 重写get方法
 - (UICollectionView *)collectionView{
     if (!_collectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -99,7 +89,17 @@
     }
     return _collectionView;
 }
-
+- (UIAlertController *)alertVC{
+    if (!_alertVC) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"你做多只能选%d张照片",LimitCount] message:nil preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"我知道了" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:action];
+        
+        _alertVC = alert;
+    }
+    return _alertVC;
+}
 #pragma mark - collection datasource and delegate
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     GFLargePhotoCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:_reuseIdentifier forIndexPath:indexPath];
@@ -128,6 +128,21 @@
     self.currentIndex = scrollView.contentOffset.x / (kWidth + _offSpaceX);
 }
 
+#pragma mark - kvo的回调方法
+//keyPath:属性名称
+//object:被观察的对象
+//change:变化前后的值都存储在change字典中
+//context:注册观察者的时候,context传递过来的值
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    
+    if ([[change objectForKey:NSKeyValueChangeNewKey] integerValue] >= LimitCount) {
+        _isEnough = YES;
+    }else{
+        _isEnough = NO;
+    }
+//    [self.collectionView reloadData];
+}
+
 #pragma mark - Action
 - (void)leftBtnClick{
     if (self.passArrayBlock) {
@@ -137,6 +152,10 @@
 }
 
 - (void)rightBtnClick:(UIButton *)sender{
+    if (_isEnough && !sender.selected) {
+        [self presentViewController:self.alertVC animated:YES completion:nil];
+        return;
+    }
     sender.selected = !sender.selected;
     GFAsset *asset = self.assetArray[_currentIndex];
     asset.isSelected = sender.selected;
@@ -155,13 +174,6 @@
     _currentIndex = currentIndex;
     GFAsset *asset = self.assetArray[currentIndex];
     self.rightBtn.selected = asset.isSelected;
-}
-
-- (NSMutableArray *)selectedImgIndexs{
-    if (!_selectedImgIndexs) {
-        _selectedImgIndexs = [NSMutableArray array];
-    }
-    return _selectedImgIndexs;
 }
 
 - (void)didReceiveMemoryWarning {

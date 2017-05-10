@@ -8,22 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "GFAsset.h"
-
+#define LimitCount 9
 @interface GFPhotoBaseViewController : UIViewController{
     NSString *_reuseIdentifier;
     NSMutableArray *_selectedImgIndexs;
     UICollectionView *_collectionView;
     NSMutableArray<GFAsset *> *_assetArray;
+    BOOL _isEnough;
 }
 
 @property(nonatomic)BOOL bottomViewIsHidden;
 
-@property(nonatomic)NSInteger imgCount;
+@property(nonatomic)NSInteger imgCount;//选择的照片数目
 
 @property(nonatomic,strong)UICollectionView *collectionView;
 
-@property(nonatomic,strong)NSMutableArray *selectedImgIndexs;
+@property(nonatomic,strong)NSMutableArray *selectedImgIndexs;//选择的照片的数组下标
 
-@property(nonatomic,strong)NSMutableArray<GFAsset *> *assetArray;
+@property(nonatomic,strong)NSMutableArray<GFAsset *> *assetArray;//所有照片的数组
 
 @end

@@ -62,13 +62,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
 }
 
-//- (void)submitClick:(UIButton *)sender{
-//    
-//    //上传部分代码请写在下边
-//    
-//    
-//}
-
 #pragma mark - Action
 
 - (void)rightBtnClick{
@@ -91,12 +84,12 @@
     }];
 }
 
-- (NSMutableArray *)selectedImgIndexs{
-    if (!_selectedImgIndexs) {
-        _selectedImgIndexs = [NSMutableArray array];
-    }
-    return _selectedImgIndexs;
-}
+//- (NSMutableArray *)selectedImgIndexs{
+//    if (!_selectedImgIndexs) {
+//        _selectedImgIndexs = [NSMutableArray array];
+//    }
+//    return _selectedImgIndexs;
+//}
 
 - (ALAssetsGroup *)group{
     if (!_group) {
@@ -104,8 +97,6 @@
     }
     return _group;
 }
-
-
 
 #pragma mark - 重写Get方法
 - (UICollectionView *)collectionView{
@@ -143,7 +134,15 @@
     
     cell.asset = self.assetArray[indexPath.row];
     
+    if (_isEnough && !cell.asset.isSelected) {
+        cell.alpha = 0.5;
+        cell.userInteractionEnabled = NO;
+    }else{
+        cell.userInteractionEnabled = YES;
+    }
+    
     __weak typeof(self) weakSelf = self;
+    
     cell.selectClick = ^(GFAsset *asset){
         [weakSelf.assetArray replaceObjectAtIndex:indexPath.row withObject:asset];
         if (asset.isSelected) {

@@ -20,13 +20,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _isEnough = NO;
     _bottomViewHeight = 44;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    //设置NavBar
     [self setupNav];
+    
+    //添加底部视图
     [self addBottomView];
     self.imgCount = 0;
+    [self addObserver:self forKeyPath:@"imgCount" options:NSKeyValueObservingOptionNew context:nil];
     
 }
 
@@ -34,8 +40,11 @@
     
 }
 
+
 - (void)setImgCount:(NSInteger)imgCount{
+    _imgCount = imgCount;
     if (imgCount == 0) {
+        //数目为0不可提交
         self.numberLabel.hidden = YES;
         self.submitBtn.enabled = NO;
         return;
@@ -45,6 +54,7 @@
     self.numberLabel.text = [NSString stringWithFormat:@"%ld",(long)imgCount];
 }
 
+//底部视图
 - (void)addBottomView{
     UIView *bottom = [[UIView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - _bottomViewHeight, [UIScreen mainScreen].bounds.size.width, _bottomViewHeight)];
     [self.view addSubview:bottom];
@@ -64,12 +74,32 @@
     [bottom addSubview:submitBtn];
     submitBtn.frame = CGRectMake(CGRectGetMaxX(numberLabel.frame) + 3, 0, 40, _bottomViewHeight);
     [submitBtn setTitle:@"提交" forState:UIControlStateNormal];
-    [submitBtn addTarget:self action:@selector(submitClick:) forControlEvents:UIControlEventTouchUpInside];
+    [submitBtn addTarget:self action:@selector(submitClick) forControlEvents:UIControlEventTouchUpInside];
     self.submitBtn = submitBtn;
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(submitClick)];
+    [numberLabel addGestureRecognizer:tap];
+    numberLabel.userInteractionEnabled = YES;
 }
 
-- (void)submitClick:(UIButton *)sender{
+#pragma mark - kvo的回调方法
+//keyPath:属性名称
+//object:被观察的对象
+//change:变化前后的值都存储在change字典中
+//context:注册观察者的时候,context传递过来的值
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    
+    if ([[change objectForKey:NSKeyValueChangeNewKey] integerValue] >= LimitCount) {
+        _isEnough = YES;
+    }else{
+        _isEnough = NO;
+    }
+    [self.collectionView reloadData];
+}
+
+#pragma mark - Action
+- (void)submitClick{
+    
     //将索引变换成Image数组，方便上传
     NSMutableArray *selectedImgs = [NSMutableArray array];
     dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -84,15 +114,30 @@
         });
     }
     
+    //利用dispatch group是为了确认数组转换
     dispatch_group_notify(dispatchGroup, dispatch_get_main_queue(), ^(){
         //在这里上传
         
         NSLog(@"count:%lu",(unsigned long)selectedImgs.count);
     });
 }
+#pragma mark - 重写get方法
+
+- (NSMutableArray *)selectedImgIndexs{
+    if (!_selectedImgIndexs) {
+        _selectedImgIndexs = [NSMutableArray array];
+    }
+    return _selectedImgIndexs;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)dealloc{
+
+    [self removeObserver:self forKeyPath:@"imgCount"];
 }
 
 /*
