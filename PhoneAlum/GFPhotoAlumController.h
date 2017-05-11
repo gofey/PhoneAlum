@@ -9,5 +9,5 @@
 #import "GFPhotoBaseViewController.h"
 
 @interface GFPhotoAlumController : UIViewController
-//@property(nonatomic,weak) id<GFPhotosSelectedDelegate> delegate;
+@property(nonatomic,weak) id<GFPhotoAlumDelegate> delegate;
 @end

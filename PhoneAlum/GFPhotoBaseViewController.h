@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "GFAsset.h"
 #define LimitCount 9
+
+@protocol GFPhotoAlumDelegate <NSObject>
+
+- (void)photoAlumSelectedImageArray:(NSArray<UIImage *> *)selectedImgs;
+
+@end
+
 @interface GFPhotoBaseViewController : UIViewController{
     NSString *_reuseIdentifier;
     NSMutableArray *_selectedImgIndexs;
@@ -24,6 +31,8 @@
 @property(nonatomic,strong)UICollectionView *collectionView;
 
 @property(nonatomic,strong)NSMutableArray *selectedImgIndexs;//选择的照片的数组下标
+
+@property(nonatomic,weak) id<GFPhotoAlumDelegate> delegate;//代理
 
 @property(nonatomic,strong)NSMutableArray<GFAsset *> *assetArray;//所有照片的数组
 

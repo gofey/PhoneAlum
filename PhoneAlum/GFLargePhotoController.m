@@ -140,7 +140,6 @@
     }else{
         _isEnough = NO;
     }
-//    [self.collectionView reloadData];
 }
 
 #pragma mark - Action

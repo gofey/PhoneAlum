@@ -92,7 +92,7 @@
     GFPhotosController *photos = [[GFPhotosController alloc] init];
     ALAssetsGroup *group = self.assetGroupArray[indexPath.row];
     photos.group = group;
-  
+    photos.delegate = self.delegate;
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = backItem;
     

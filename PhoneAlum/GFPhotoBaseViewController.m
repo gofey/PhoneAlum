@@ -101,7 +101,7 @@
 - (void)submitClick{
     
     //将索引变换成Image数组，方便上传
-    NSMutableArray *selectedImgs = [NSMutableArray array];
+    NSMutableArray<UIImage *> *selectedImgs = [NSMutableArray array];
     dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t dispatchGroup = dispatch_group_create();
     
@@ -117,8 +117,10 @@
     //利用dispatch group是为了确认数组转换
     dispatch_group_notify(dispatchGroup, dispatch_get_main_queue(), ^(){
         //在这里上传
+        [self.delegate photoAlumSelectedImageArray:selectedImgs];
+//        NSLog(@"count:%lu",(unsigned long)selectedImgs.count);
         
-        NSLog(@"count:%lu",(unsigned long)selectedImgs.count);
+        [self dismissViewControllerAnimated:YES completion:nil];
     });
 }
 #pragma mark - 重写get方法

@@ -166,6 +166,7 @@
     large.currentIndex = indexPath.row;
     large.assetArray = self.assetArray;
     large.selectedImgIndexs = self.selectedImgIndexs;
+    large.delegate = self.delegate;
     __weak typeof(self) weakSelf = self;
     large.passArrayBlock = ^(NSMutableArray *assetArray,NSMutableArray *selectedArray){
         weakSelf.assetArray = assetArray;
