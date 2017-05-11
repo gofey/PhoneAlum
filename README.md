@@ -22,32 +22,45 @@
     
 诸如按钮文字之类的小细节当然都可以自己更改啦
 
-大家最关注的功能当然是在哪里获取已经选择的照片
+哦哦！！！大家最关注的功能当然是在哪里获取已经选择的照片
+如果你想拿到已经选择的照片，最直接的方法当然是代理，
+引入<GFPhotoAlumDelegate>
+设置photoAlum.delegate = self;
+代理方法
+  
+    #pragma mark - delegate
+    - (void)photoAlumSelectedImageArray:(NSArray<UIImage *> *)selectedImgs{
+        NSLog(@"%lu",(unsigned long)selectedImgs.count);
+     
+        self.bgImg.image = selectedImgs[0];
+    }
+
 在GFPhotoBaseViewController.m文件下的- (void)submitClick方法
 
     - (void)submitClick{
     
-        //将索引变换成Image数组，方便上传
+    //将索引变换成Image数组，方便上传
+    NSMutableArray<UIImage *> *selectedImgs = [NSMutableArray array];
+    dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_t dispatchGroup = dispatch_group_create();
     
-        NSMutableArray *selectedImgs = [NSMutableArray array];//转换好的图片数组
-        dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_group_t dispatchGroup = dispatch_group_create();
-    
-        for (NSNumber *num in self.selectedImgIndexs) {
-            NSInteger index = num.integerValue;
-            dispatch_group_async(dispatchGroup, globalQ, ^(){
-            //选的图片是高清图
-            UIImage *image = [UIImage           imageWithCGImage:self.assetArray[index].asset.defaultRepresentation.fullResolutionImage];
+    for (NSNumber *num in self.selectedImgIndexs) {
+        NSInteger index = num.integerValue;
+        dispatch_group_async(dispatchGroup, globalQ, ^(){
+            UIImage *image = [UIImage imageWithCGImage:self.assetArray[index].asset.defaultRepresentation.fullResolutionImage];
             [selectedImgs addObject:image];
             
-            });
-        }
-    
-        //利用dispatch group是为了确认数组转换
-        dispatch_group_notify(dispatchGroup, dispatch_get_main_queue(), ^(){
-            //在这里写上传代码
-        
-            NSLog(@"count:%lu",(unsigned long)selectedImgs.count);
         });
+    }
+    
+    //利用dispatch group是为了确认数组转换
+    dispatch_group_notify(dispatchGroup, dispatch_get_main_queue(), ^(){
+        //代理传值
+        [self.delegate photoAlumSelectedImageArray:selectedImgs];
+        //在这里上传
+
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
     }
 
