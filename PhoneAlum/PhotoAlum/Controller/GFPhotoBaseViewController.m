@@ -116,9 +116,10 @@
     
     //利用dispatch group是为了确认数组转换
     dispatch_group_notify(dispatchGroup, dispatch_get_main_queue(), ^(){
-        //在这里上传
+        //代理传值
         [self.delegate photoAlumSelectedImageArray:selectedImgs];
-//        NSLog(@"count:%lu",(unsigned long)selectedImgs.count);
+        //在这里上传
+
         
         [self dismissViewControllerAnimated:YES completion:nil];
     });
